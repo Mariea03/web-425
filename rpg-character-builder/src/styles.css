@@ -1,1 +1,95 @@
-/* You can add global styles to this file, and also import other style files */
+/* Import Google Fonts*/
+@import url("https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Nova+Flat&family=Viaoda+Libre&display=swap");
+
+body,header,nav,main,section,footer,img,figure,figcaption,div,ul {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  height: 100%;
+}
+
+.wrapper {
+  background-image: url('/rpg_character_background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.banner{
+  background-color: #988731;
+  color: #988731;
+  text-align: center;
+}
+
+.banner-img{
+  max-width: 100%;
+  height: auto;
+}
+
+.main-content{
+  display: flex;
+  flex: 1;
+}
+
+.navbar{
+  flex: 0 0 200px;
+  padding: 20px;
+}
+
+h1,h2,h3,h4,h5,h6{
+  font-family:'Nova+Flat'
+
+}
+
+.navbar ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar li{
+  padding: 8px;
+  transition: background-color 0.3s ease, color0.3s ease;
+  font-family:'Funnel+Sans';
+  color:#988731
+}
+
+.navbar li:hover{
+  background-color: #988731;
+  color: #000000;
+  cursor: pointer;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.content{
+  flex:1;
+  padding:20px;
+  font-family: 'Viaoda+Libre'
+}
+
+footer{
+  background-color:#988731;
+  color:#000000;
+  text-align: center;
+  padding: 20px;
+  font-family: 'Nova+Flat'
+}
+
+.footer a{
+  color: #000000;
+  text-decoration:none;
+}
+
+.footer a:hover{
+  text-decoration: underline;
+}
