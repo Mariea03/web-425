@@ -4,11 +4,12 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink], template:`
+  imports: [RouterOutlet, RouterLink],
+  template:`
 
   <div class="wrapper">
         <header class="banner">
-          <img src="RPGCharacter.png" alt="website banner for rpg character builder" class="banner-img">
+          <h1>RPG CHARACTER BUILDER</h1>
           </header>
 
         <div class="sign-in-container">
@@ -54,17 +55,13 @@ import { RouterOutlet, RouterLink } from '@angular/router';
         .sign-in-link {
           color: #988731;
           text-decoration: none;
-          font-family:'Funnel+Sans', sans-serif;
+          font-family:'Funnel Sans', sans-serif;
         }
 
         .sign-in-link:hover{
           text-decoration:underline;
         }
-        `
-      ]
+      `]
   })
-export class AppComponent {
-  title(title: any) {
-  throw new Error('Method not implemented.');
-  }
-}
+  export class AppComponent {}
+
