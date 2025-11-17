@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Character } from '../create-character/create-character.component';
 
@@ -41,8 +41,9 @@ import { Character } from '../create-character/create-character.component';
     `]
 })
 export class PlayersComponent {
-  characters: Character[] = [
+  @Input() characters: Character[] = [
     {
+      id: 1,
       name: "Hunt",
       gender: "Male",
       class: "Warrior",
@@ -51,6 +52,7 @@ export class PlayersComponent {
       funFact: "Hunt wrestled a bear once and survived."
     },
      {
+      id: 2,
       name: "Slither",
       gender: "Female",
       class: "Rouge",
@@ -59,6 +61,7 @@ export class PlayersComponent {
       funFact: "Slither has never been caught in a heist."
     },
      {
+      id: 3,
       name: "Dwan",
       gender: "Other",
       class: "Mage",
@@ -67,6 +70,7 @@ export class PlayersComponent {
       funFact: "Dwan brews magical potions in their sleep."
     },
      {
+      id: 4,
       name: "Newt",
       gender: "Male",
       class: "Warrior",
@@ -75,6 +79,7 @@ export class PlayersComponent {
       funFact: "Newt single handedly defeated a dragon."
     },
      {
+      id: 5,
       name: "Wilma",
       gender: "Female",
       class: "Mage",
@@ -83,6 +88,7 @@ export class PlayersComponent {
       funFact: "Wilma can read the stars to predict events."
     },
      {
+      id: 6,
       name: "Blane",
       gender: "Male",
       class: "Rouge",
@@ -91,6 +97,7 @@ export class PlayersComponent {
       funFact: "Blane can pick locks with a single hand."
     },
      {
+      id: 7,
       name: "Stacker",
       gender: "Female",
       class: "Mage",
@@ -99,6 +106,7 @@ export class PlayersComponent {
       funFact: "Stacker can memorize an entire spell book overnight."
     },
      {
+      id: 8,
       name: "Archer",
       gender: "Male",
       class: "Warrior",
@@ -107,6 +115,7 @@ export class PlayersComponent {
       funFact: "Archer has a tattoo for every battle he fought."
     },
      {
+      id: 9,
       name: "Stathis",
       gender: "Other",
       class: "Warrior",
@@ -115,6 +124,7 @@ export class PlayersComponent {
       funFact: "Stathis never misses a shadow step."
     },
      {
+      id: 10,
       name: "Snootles",
       gender: "Male",
       class: "Mage",
@@ -124,3 +134,4 @@ export class PlayersComponent {
     }
   ];
 }
+

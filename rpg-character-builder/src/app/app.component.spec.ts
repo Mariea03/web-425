@@ -1,12 +1,18 @@
 import { TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
+import { CreateCharacterComponent } from './create-character/create-character.component';
+import { ActivatedRoute }from '@angular/router';
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AppComponent],
-    }).compileComponents();
-  });
+beforeEach(async () => {
+  await TestBed.configureTestingModule({
+    imports: [FormsModule, CreateCharacterComponent],
+    declarations: [AppComponent],
+    providers: [
+      {provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => null } } } }
+    ]
+  }).compileComponents();
+});
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
@@ -26,4 +32,4 @@ describe('AppComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('h1')?.textContent).toContain('Hello, rpg-character-builder');
   });
-});
+

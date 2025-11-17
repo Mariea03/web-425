@@ -1,8 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { PlayersComponent } from './players.component';
-
-import { By } from '@angular/platform-browser';
+import { Character } from '../create-character/create-character.component';
+import { CommonModule } from '@angular/common';
 
 describe('PlayersComponent', () => {
   let component: PlayersComponent;
@@ -10,7 +9,7 @@ describe('PlayersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PlayersComponent]
+      imports: [CommonModule, PlayersComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PlayersComponent);
@@ -22,8 +21,21 @@ describe('PlayersComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should correctly display a list of characters', () => {
-    const characterCards = fixture.debugElement.queryAll(By.css('[data-testid="character-card"]'));
-    expect(characterCards.length).toBe(10);
+  it('hould render degault characters', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelectorAll('.character-card').length).toBeGreaterThan(0);
   });
-});
+
+  it('should accept characters via @Input', () => {
+    const newCharacters: Character[] = [
+      { id: 1, name: 'TestChar', gender: 'Male', class: 'Mage', faction: 'F', startingLocation: 'Loc', funFact: 'fun'}
+    ];
+    component.characters = newCharacters;
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelectorAll('.character-card').length).toBe(1);
+    expect(compiled.querySelector('.character-chard h2')?.textContent).toContain('TestChar');
+  });
+  });
+

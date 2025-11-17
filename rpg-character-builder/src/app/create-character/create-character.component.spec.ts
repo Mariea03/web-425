@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';
 import { CreateCharacterComponent } from './create-character.component';
 
 describe('CreateCharacterComponent', () => {
@@ -8,9 +8,8 @@ describe('CreateCharacterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreateCharacterComponent]
-    })
-    .compileComponents();
+      imports: [FormsModule, CreateCharacterComponent]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CreateCharacterComponent);
     component = fixture.componentInstance;
@@ -20,4 +19,51 @@ describe('CreateCharacterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should generate a random ID between 1 and 1000', () => {
+    const id = component.generateRandomId();
+    expect(id).toBeGreaterThanOrEqual(1);
+    expect(id).toBeLessThanOrEqual(1000);
+    expect(Number.isInteger(id)).toBeTrue();
+  });
+
+  it('should add a character correctly', () => {
+    component.formData = {
+      id:0,
+      name: 'Hero',
+      gender: 'Male',
+      class: 'Warrior',
+      faction: 'TestFaction',
+      startingLocation: 'TestLoc',
+      funFact: 'TestFact'
+    };
+
+    const initialLength = component.characters.length;
+    component.addCharacter();
+
+    expect(component.characters.length).toBe(initialLength + 1);
+    const newChar = component.characters[component.characters.length - 1];
+    expect(newChar.name).toBe('TestCharacter');
+    expect(newChar.id).toBeGreaterThanOrEqual(1);
+  });
+
+  it('should reset the form', () => {
+    component.formData = {
+      id: 999,
+      name: 'Temp',
+      gender: 'Female',
+      class: 'Mage',
+      faction: 'x',
+      startingLocation: 'Y',
+      funFact: 'Z'
+    };
+
+    component.resetForm();
+
+    expect(component.formData.name).toBe('');
+    expect(component.formData.gender).toBe('Male');
+    expect(component.formData.class).toBe('Warrior');
+    expect(component.formData.id).toBe(0);
+  });
 });
+

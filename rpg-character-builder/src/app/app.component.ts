@@ -63,5 +63,7 @@ import { RouterOutlet, RouterLink } from '@angular/router';
         }
       `]
   })
-  export class AppComponent {}
+  export class AppComponent {
+    title = 'rpg-character-builder';
+  }
 
