@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { CreateCharacterComponent } from './create-character.component';
+import { CommonModule } from '@angular/common';
 
 describe('CreateCharacterComponent', () => {
   let component: CreateCharacterComponent;
@@ -8,7 +9,7 @@ describe('CreateCharacterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsModule, CreateCharacterComponent]
+      imports: [FormsModule,CommonModule, CreateCharacterComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(CreateCharacterComponent);
@@ -43,7 +44,7 @@ describe('CreateCharacterComponent', () => {
 
     expect(component.characters.length).toBe(initialLength + 1);
     const newChar = component.characters[component.characters.length - 1];
-    expect(newChar.name).toBe('TestCharacter');
+    expect(newChar.name).toBe('Hero');
     expect(newChar.id).toBeGreaterThanOrEqual(1);
   });
 

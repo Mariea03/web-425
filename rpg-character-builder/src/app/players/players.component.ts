@@ -24,19 +24,51 @@ import { Character } from '../create-character/create-character.component';
   styles: [`
     .players-container {
       padding: 20px;
+      color: #ddd;
+      font-family: 'Funnel Sans', sans-serif;
     }
+
+    h1 {
+      text-align: center;
+      font-family: 'Nova Flat', sans-serif;
+      margin-bottom: 30px;
+      color: #f5f5f5;
+    }
+
     .characters-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
+      justify-content: center;
     }
     .character-card {
-      flex: 0 1 calc(33.33% - 20px);
-      border: 1px solid #ccc;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(224,219,193,1);
-      background: #eae7d6;
+      flex: 0 1 300px;
+      background: rgba(40, 40, 40, 0.9);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    character-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    }
+
+    character-card h2 {
+      font-family: 'Viaoda Libre', serif;
+      margin-bottom: 10px;
+      color: #f5f5f5;
+    }
+
+    .character-card p {
+      margin: 5px 0;
+    }
+
+    @media (max-width: 768px) {
+      .character-card {
+        flex: 1 1 100%;
+      }
     }
     `]
 })

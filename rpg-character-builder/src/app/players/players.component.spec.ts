@@ -35,7 +35,7 @@ describe('PlayersComponent', () => {
 
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelectorAll('.character-card').length).toBe(1);
-    expect(compiled.querySelector('.character-chard h2')?.textContent).toContain('TestChar');
+    expect(compiled.querySelector('.character-card h2')?.textContent).toContain('TestChar');
   });
   });
 

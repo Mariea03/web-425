@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 
 export interface Character {
   id: number;
@@ -14,7 +16,7 @@ export interface Character {
 @Component({
   selector: 'app-create-character',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   template: `
     <div class="container">
      <h2>Create a New Character</h2>
@@ -75,42 +77,90 @@ export interface Character {
         <td>{{ char.funFact }}</td>
       </tr>
     </table>
-  </div
+  </div>
   `,
   styles: [`
     .container {
-      width: 60%;
-      margin: auto;
-      padding: 20px;
-      background: #fafafa;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      width: 80%;
+      margin: 30px auto;
+      padding: 30px;
+      background: rgba(30,30,30,0.9);
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      color: #ddd;
+      font-family: 'Funnel Sans', sans-serif;
+    }
+
+    h2, h3 {
+      text-align: center;
+      font-family: 'Nova Flat', sans-serif;
+      color: #f5f5f5;
+      margin-bottom: 20px;
     }
 
     form {
       display: grid;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 15px;
+      margin-bottom: 25px;
     }
 
-    input, select, button {
-      padding: 8px;
+    label {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    input, select {
+      padding: 10px;
       font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus {
+      box-shadow: 0 0 8px #988731;
+      background-color: #222;
+      color: #f5f5f5;
+    }
+
+    button{
+      background-color: #988731;
+      color: #000;
+      font-weight: 600;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      transitions: all 0.3s ease;
+    }
+
+
+    button:hover {
+      background-color: #bfa741;
+      box-shadow: 0 0 10px #bfa741;
+      transform: translateY(-3px);
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
+      margin-top: 20px;
     }
 
     th, td {
-      padding: 8px;
-      border: 1px solid #ddd;
+      padding: 10px;
+      border: 1px solid #444;
       text-align: left;
     }
 
-    h2,h3 {
-       text-align: center;
+    th {
+      background-color: #222;
+      color: #f5f5f5;
+    }
+
+    td {
+      background-color: rgba(40,40,40,0.9);
     }
     `]
 })
