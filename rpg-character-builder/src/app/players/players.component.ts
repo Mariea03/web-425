@@ -8,69 +8,87 @@ import { Character } from '../create-character/create-character.component';
   imports: [CommonModule],
   template: `
     <div class="players-container">
-      <h1>Players</h1>
+      <h1 class="players-title">Player Roster</h1>
+
       <div class="characters-grid">
         <div class="character-card" *ngFor="let character of characters" data-testid="character-card">
-          <h2>{{ character.name }}</h2>
-          <p><strong>Gender:</strong> {{ character.gender }}</p>
-          <p><strong>Class:</strong> {{ character.class }}</p>
-          <p><strong>Faction:</strong> {{ character.faction }}</p>
-          <p><strong>Location:</strong> {{ character.startingLocation }}</p>
-          <p><strong>Fun Fact:</strong> {{ character.funFact }}</p>
+          <h2 class="char-name">{{ character.name }}</h2>
+
+          <div class="char-info">
+            <p><strong>Gender:</strong> {{ character.gender }}</p>
+            <p><strong>Class:</strong> {{ character.class }}</p>
+            <p><strong>Faction:</strong> {{ character.faction }}</p>
+            <p><strong>Location:</strong> {{ character.startingLocation }}</p>
+            <p><strong>Fun Fact:</strong> {{ character.funFact }}</p>
+          </div>
         </div>
       </div>
     </div>
   `,
   styles: [`
     .players-container {
-      padding: 20px;
-      color: #ddd;
-      font-family: 'Funnel Sans', sans-serif;
+      padding: 40px;
+      color: #e7e7e7;
+      font-family: 'Funnel Sans', sans-serif
+      min-height: 100vh;
     }
 
-    h1 {
+    .players-title {
       text-align: center;
       font-family: 'Nova Flat', sans-serif;
-      margin-bottom: 30px;
-      color: #f5f5f5;
+      margin-bottom: 40px;
+      color: #f8e9c6;
+      letter-spacing: 2px;
+      text-shadow: 0 0 12px rgba(255, 222, 140,0.3);
     }
 
     .characters-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
       justify-content: center;
     }
+
     .character-card {
-      flex: 0 1 300px;
-      background: rgba(40, 40, 40, 0.9);
-      border-radius: 15px;
+      background: linear-gradient(145deg, #1e1e1e, #2b2b2b);
+      border: 1px solid rgba(255, 215, 165, 0.2);
+      border-radius: 18px;
       padding: 20px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    character-card:hover {
-      transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
     }
 
-    character-card h2 {
+    .character-chard:hover {
+      transform: translateY(-6px);
+      border: 1px solid rgba(255, 215, 165, 0.45);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.75), 0 0 15px rgba(255, 224, 154, 0.25);
+    }
+
+    .char-name {
       font-family: 'Viaoda Libre', serif;
+      font-size: 1.6rem;
+      color: #f8e8c0;
       margin-bottom: 10px;
-      color: #f5f5f5;
+      text-shadow: 0 0 8px rgba(255, 210, 150, 0.35);
+      }
+
+    .char-info p {
+      margin: 6px 0;
+      font-size: 0.95rem;
+      color: #d4d4d4;
     }
 
-    .character-card p {
-      margin: 5px 0;
+    strong {
+      color: #f1d7a0;
+      font-weight: 600;
     }
 
     @media (max-width: 768px) {
-      .character-card {
-        flex: 1 1 100%;
+      .players-container: {
+        padding: 20px;
       }
     }
-    `]
+  `]
 })
 export class PlayersComponent {
   @Input() characters: Character[] = [

@@ -18,151 +18,202 @@ export interface Character {
   standalone: true,
   imports: [FormsModule, CommonModule],
   template: `
-    <div class="container">
-     <h2>Create a New Character</h2>
+    <div class="character-wrapper">
 
-     <form #characterForm="ngForm" (ngSubmit)="addCharacter()">
+      <h2 class="character-title">Create a New Character</h2>
 
-     <label>Name:</label>
-     <input type="text" name="name" [(ngModel)]="formData.name" required />
+      <form #characterForm="ngForm" (ngSubmit)="addCharacter()" class="character-form">
 
-     <label>Gender:</label>
-     <select name="gender" [(ngModel)]="formData.gender">
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-      <option value="Other">Other</option>
-     </select>
+        <div class="form-group">
+          <label>Name:</label>
+          <input type="text" name="name" [(ngModel)]="formData.name" required />
+        </div>
 
-     <label>Class:</label>
-     <select name="class" [(ngModel)]="formData.class">
-      <option value="Warrior">Warrior</option>
-      <option value="Mage">Mage</option>
-      <option value="Rogue">Rogue</option>
-     </select>
+        <div class="form-group">
+          <label>Gender:</label>
+          <select name="gender" [(ngModel)]="formData.gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
 
-     <label>Faction:</label>
-     <input type="text" name="faction" [(ngModel)]="formData.faction" />
+        <div class="form-group">
+          <label>Class:</label>
+          <select name="class" [(ngModel)]="formData.class">
+            <option value="Warrior">Warrior</option>
+            <option value="Mage">Mage</option>
+            <option value="Rogue">Rogue</option>
+          </select>
+         </div>
 
-     <label>Starting Location:</label>
-     <input type="text" name="startingLocation" [(ngModel)]="formData.startingLocation" />
+        <div class="form-group">
+          <label>Faction:</label>
+          <input type="text" name="faction" [(ngModel)]="formData.faction" />
+        </div>
 
-     <label>Fun Fact:</label>
-     <input type="text" name="funFact" [(ngModel)]="formData.funFact" />
+        <div class="form-group">
+          <label>Starting Location:</label>
+          <input type="text" name="startingLocation" [(ngModel)]="formData.startingLocation" />
+        </div>
 
-     <button type="submit">Create Character</button>
-     </form>
 
-     <hr />
+        <div class="form-group">
+          <label>Fun Fact:</label>
+          <input type="text" name="funFact" [(ngModel)]="formData.funFact" />
+        </div>
 
-     <h3>Created Characters</h3>
+        <button type="submit" class="create-btn">Create Character</button>
+      </form>
 
-     <table *ngIf="characters.length > 0">
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Gender</th>
-        <th>Class</th>
-        <th>Faction</th>
-        <th>Location</th>
-        <th>Fun Fact</th>
-      </tr>
+      <hr class="divider" />
 
-      <tr *ngFor="let char of characters">
-        <td>{{ char.id }}</td>
-        <td>{{ char.name }}</td>
-        <td>{{ char.gender }}</td>
-        <td>{{ char.class }}</td>
-        <td>{{ char.faction }}</td>
-        <td>{{ char.startingLocation }}</td>
-        <td>{{ char.funFact }}</td>
-      </tr>
-    </table>
-  </div>
+      <h3 class="character-subtitle">Created Characters</h3>
+
+      <table *ngIf="characters.length > 0" class="character-table">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Class</th>
+          <th>Faction</th>
+          <th>Location</th>
+          <th>Fun Fact</th>
+        </tr>
+
+        <tr *ngFor="let char of characters">
+          <td>{{ char.id }}</td>
+          <td>{{ char.name }}</td>
+          <td>{{ char.gender }}</td>
+          <td>{{ char.class }}</td>
+          <td>{{ char.faction }}</td>
+          <td>{{ char.startingLocation }}</td>
+          <td>{{ char.funFact }}</td>
+        </tr>
+      </table>
+    </div>
   `,
+
   styles: [`
-    .container {
-      width: 80%;
-      margin: 30px auto;
-      padding: 30px;
-      background: rgba(30,30,30,0.9);
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-      color: #ddd;
-      font-family: 'Funnel Sans', sans-serif;
+    .character-wrapper {
+      width: 85%;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 40px;
+      background: rgba(20,20,20,0.92);
+      border-radius: 18px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.7), inset 0 0 12px rgba(217,184,111,0.1);
+      backdrop-filter: blur(4px);
+      color: #e7e0c5;
     }
 
-    h2, h3 {
-      text-align: center;
-      font-family: 'Nova Flat', sans-serif;
-      color: #f5f5f5;
-      margin-bottom: 20px;
+    .character-title {
+    text-align: center;
+    font-family: 'Nova Flat', sans-serif;
+    color: #d6b86f;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    text-shadow: 0 0 10px rgba(214,184,111,0.3)
     }
 
-    form {
+    .character-form {
       display: grid;
-      gap: 15px;
-      margin-bottom: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
     }
 
     label {
       font-weight: 600;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
+      color: #d6b86f;
+      letter-spacing: 1px;
+      text-shadow: 0 0 6px rgba(214,184,111,0.2);
     }
 
     input, select {
       padding: 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(214,184,111,0.3);
+      background: rgba(30,30,30,0.9);
+      color: #f0e9d2;
       font-size: 1rem;
-      border-radius: 8px;
-      border: none;
+      transition: all 0.25s ease;
+    }
+
+    input:focus, select:focus {
       outline: none;
+      border-color: #d6b86f;
+      box-shadow: 0 0 12px rgba(214,184,111,0.4);
+      background: rgba(40,40,40,0.9);
     }
 
-    input:focus,
-    select:focus {
-      box-shadow: 0 0 8px #988731;
-      background-color: #222;
-      color: #f5f5f5;
-    }
-
-    button{
-      background-color: #988731;
-      color: #000;
-      font-weight: 600;
-      padding: 12px;
+    .create-btn {
+      grid-column: 1 / -1;
+      background: linear-gradient(to bottom, #d6b86f, #bfa741);
+      color: #1a1a1a;
+      padding: 12px 20px;
       border-radius: 10px;
       border: none;
+      font-weight: 700;
+      font-size: 1.1rem;
       cursor: pointer;
-      transitions: all 0.3s ease;
+      margin-top: 10px;
+      transition: all 0.3s ease;
     }
 
-
-    button:hover {
-      background-color: #bfa741;
-      box-shadow: 0 0 10px #bfa741;
+    .create-btn:hover {
       transform: translateY(-3px);
+      box-shadow: 0 0 15px #d6b86f;
     }
 
-    table {
+    .divder {
+      margin: 40px 0;
+      border: 0;
+      border-bottom: 1px solid rgba(214,184,111,0.3);
+    }
+
+    .character-subtitle {
+      text-align: center;
+      color: #d6b86f;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .character-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
+      background: rgba(18,18,18,0.85);
+      border-radius: 12px;
+      overflow: hidden;
     }
 
-    th, td {
-      padding: 10px;
-      border: 1px solid #444;
-      text-align: left;
+    th,td {
+      padding: 12px;
+      border: 1px solid rgba(214,184,111,0.25);
     }
 
     th {
-      background-color: #222;
-      color: #f5f5f5;
+      background: rgba(30,30,30,0.9);
+      color: #d6b86f;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-shadow: 0 0 5px rgba(214,184,111,0.3);
     }
 
     td {
-      background-color: rgba(40,40,40,0.9);
+      background: rgba(40,40,40,0.9);
+      color: #e7e0c5;
     }
-    `]
+
+    tr:hover td {
+      background: rgba(55,55,55,0.85)
+    }
+  `]
 })
 export class CreateCharacterComponent {
   @Input() characters: Character[] = [];

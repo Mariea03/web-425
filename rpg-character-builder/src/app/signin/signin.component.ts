@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   imports: [CommonModule, ReactiveFormsModule],
   template: `
     <div class="signin-wrapper">
-      <h2>Sign In</h2>
+      <h2 class="signin-title">Sign In</h2>
 
       <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
         <label for="email">Email</label>
@@ -31,70 +31,77 @@ import { Router } from '@angular/router';
         <button type="submit" [disabled]="signinForm.invalid">Sign In</button>
       </form>
     </div>
-
    `,
 
   styles: [`
     .signin-wrapper {
-      max-width: 420px;
-      margin: 30px auto;
-      padding: 24px;
-      background: rgba(30,30,30,0.95);
-      border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
-      color: #ddd;
+      max-width: 450px;
+      margin: 60px auto;
+      padding: 32px;
+      background: linear-gradient(145deg, #1c1b1b, #262626);
+      border: 1px solid rgba(255, 216, 168, 0.25);
+      border-radius: 18px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.7);
+      color: #e9e9e9;
       font-family: 'Funnel Sans', sans-serif;
-    }
-
-    h2 {
-     text-align: center;
-     font-family: 'Nova Flat', sans-serif;
-     color: #f5f5f5;
-     margin-bottom: 18px;
     }
 
     label {
       display: block;
       margin-bottom: 6px;
       font-weight: 600;
+      color: #f1d7a0;
+      letter-spacing: 0.5px;
     }
 
     input {
-      width: 100px;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      border: 1px solid #444;
-      background: #111;
-      color: #eee;
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 221, 160, 0.25);
+      background: #131313;
+      color: f2f2f2;
+      font-size: 1rem;
+      transition: border 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    input:focus {
+      border-color: rgba(255, 223, 158, 0.6);
+      outline: none;
+      box-shadow: 0 0 8px rgba(255, 214, 150, 0.35);
     }
 
     .error small {
-      color: #ffb3b3;
+      color: #ff9c9c;
+      font-size: 0.85rem;
     }
 
     button {
       width: 100%;
-      padding: 12px;
-      border-radius: 10px;
+      padding: 14px;
+      border-radius: 12px;
       border: none;
-      background: #9988731;
-      color: #000;
+      background: #bfa74b;
+      color: 1a1a1a;
       font-weight: 700;
+      font-size: 1rem;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: background 0.3s ease, transform 0.25s ease, box-shadow 0.25s ease;
     }
 
-    button: disabled {
+    button:hover:not(:disabled) {
+      background: #d7c06a;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(255, 223, 150, 0.3);
+    }
+
+    button:disabed {
       opacity: 0.6;
       cursor: not-allowed;
+      background: #8d855e;
     }
-
-    button-hover: not(:disabled) {
-      background: #bfa741;
-    }
-
-    `]
+  `]
 
 })
 export class SigninComponent implements OnInit {
@@ -103,7 +110,11 @@ export class SigninComponent implements OnInit {
     password: ['',[Validators.required, Validators.pattern('^(?=.*\\d)[A-Za-z\\d]{6,}$')]]
   });
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
