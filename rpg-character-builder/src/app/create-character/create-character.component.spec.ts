@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { CreateCharacterComponent } from './create-character.component';
 import { CommonModule } from '@angular/common';
+import { CreateCharacterComponent, Character } from './create-character.component';
 
 describe('CreateCharacterComponent', () => {
   let component: CreateCharacterComponent;
@@ -9,11 +9,14 @@ describe('CreateCharacterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsModule,CommonModule, CreateCharacterComponent]
+      imports: [FormsModule, CommonModule, CreateCharacterComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(CreateCharacterComponent);
     component = fixture.componentInstance;
+
+    component.characterForm = { reset: jasmine.createSpy('reset') } as any;
+
     fixture.detectChanges();
   });
 
@@ -25,10 +28,13 @@ describe('CreateCharacterComponent', () => {
     const id = component.generateRandomId();
     expect(id).toBeGreaterThanOrEqual(1);
     expect(id).toBeLessThanOrEqual(1000);
-    expect(Number.isInteger(id)).toBeTrue();
+    expect(Number.isInteger(id)).toBe(true);
   });
 
   it('should add a character correctly', () => {
+
+    spyOn(component, 'generateRandomId').and.returnValue(123);
+
     component.formData = {
       id:0,
       name: 'Hero',
@@ -45,10 +51,13 @@ describe('CreateCharacterComponent', () => {
     expect(component.characters.length).toBe(initialLength + 1);
     const newChar = component.characters[component.characters.length - 1];
     expect(newChar.name).toBe('Hero');
-    expect(newChar.id).toBeGreaterThanOrEqual(1);
+    expect(newChar.id).toBe(123);
   });
 
   it('should reset the form', () => {
+
+    component.characterForm = { reset: jasmine.createSpy( 'reset') } as any;
+
     component.formData = {
       id: 999,
       name: 'Temp',
@@ -61,10 +70,11 @@ describe('CreateCharacterComponent', () => {
 
     component.resetForm();
 
+    expect(component.formData.id).toBe(0);
     expect(component.formData.name).toBe('');
     expect(component.formData.gender).toBe('Male');
     expect(component.formData.class).toBe('Warrior');
-    expect(component.formData.id).toBe(0);
+    expect(component.characterForm.reset).toHaveBeenCalled();
   });
 });
 

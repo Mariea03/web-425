@@ -1,0 +1,43 @@
+.list-wrapper {
+  background: rgba(0,0,0,0.65);
+  padding: 20px;
+  border-radius: 12px;
+  color: #d4c66c;
+  box-shadow: inset 0 0 15px #000;
+}
+
+.list-title {
+  font-family: 'Nova Flat';
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #e0d187;
+}
+
+.empty-msg {
+  padding: 15px;
+  text-align: center;
+  font-style: italic;
+  color: #ad9f59;
+}
+
+.guild-table {
+  width: 100%;
+  background: rgba(30,30,30,0.9);
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #3a3214;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #5a4a1f;
+  color: #000;
+}
+
+tr:hover {
+  background: rgba(152,135,49,0.2);
+}

@@ -1,0 +1,19 @@
+<div class="list-wrapper">
+  <h3 class="list-title">Guild Registry</h3>
+
+  <div *ngIf="!guilds || guilds.length === 0" class="empty-msg">
+    No guilds have been formed.
+  </div>
+
+  <table *ngIf="guilds && guilds.length > 0" class="guild-table">
+    <tr>
+      <th>Guild Name</th>
+      <th>Leader</th>
+    </tr>
+
+    <tr *ngFor="let g of guilds">
+      <td>{{ g.name }}</td>
+      <td>{{ g.leader }}</td>
+    </tr>
+  </table>
+</div>

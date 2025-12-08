@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 
@@ -22,7 +22,7 @@ export interface Character {
 
       <h2 class="character-title">Create a New Character</h2>
 
-      <form #characterForm="ngForm" (ngSubmit)="addCharacter()" class="character-form">
+      <form #characterForm="ngForm" (ngSubmit)="addCharacter()">
 
         <div class="form-group">
           <label>Name:</label>
@@ -216,7 +216,12 @@ export interface Character {
   `]
 })
 export class CreateCharacterComponent {
-  @Input() characters: Character[] = [];
+
+  @Output() characterCreated = new EventEmitter<Character>();
+
+  @ViewChild('characterForm') characterForm!: NgForm;
+
+  characters: Character[] = [];
 
   formData: Character = {
     id: 0,
@@ -229,13 +234,18 @@ export class CreateCharacterComponent {
   };
 
 // Generate random Id between 1-100
-generateRandomId(): number{
+generateRandomId(): number {
   return Math.floor(Math.random() * 1000) + 1;
   }
 
 addCharacter() {
-  const newCharacter: Character = {...this.formData, id: this.generateRandomId() };
-  this.characters.push(newCharacter);
+  const newChar: Character = {
+    ...this.formData,
+    id: this.generateRandomId()
+  };
+
+  this.characters.push(newChar);
+  this.characterCreated.emit(newChar);
   this.resetForm();
 }
 
@@ -249,5 +259,18 @@ resetForm() {
     startingLocation: '',
     funFact: ''
   };
+
+  if (this.characterForm){
+  this.characterForm.reset({
+      id:0,
+    name:  '',
+    gender: 'Male',
+    class: 'Warrior',
+    faction: '',
+    startingLocation: '',
+    funFact: ''
+  });
+  }
  }
 }
+

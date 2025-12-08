@@ -1,0 +1,21 @@
+<div class="list-wrapper">
+  <h3 class="list-title">Created Characters</h3>
+
+  <div *ngIf="!characters || characters.length === 0" class="empty-msg">
+    No heroes forged yet.
+  </div>
+
+  <table *ngIf="characters && characters.length > 0" class="character-table">
+    <tr>
+      <th>Name</th>
+      <th>Class</th>
+      <th>Faction</th>
+    </tr>
+
+    <tr *ngFor="let c of characters">
+      <td>{{ c.name }}</td>
+      <td>{{ c.class }}</td>
+      <td>{{ c.faction }}</td>
+    </tr>
+  </table>
+</div>

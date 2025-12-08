@@ -1,11 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Character } from '../create-character/create-character.component';
+import { CreateCharacterComponent } from '../create-character/create-character.component';
+import { CharacterListComponent } from '../character-list/character-list.component';
 
 @Component({
   selector: 'app-players',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CreateCharacterComponent, CharacterListComponent],
   template: `
     <div class="players-container">
       <h1 class="players-title">Player Roster</h1>
@@ -29,7 +31,7 @@ import { Character } from '../create-character/create-character.component';
     .players-container {
       padding: 40px;
       color: #e7e7e7;
-      font-family: 'Funnel Sans', sans-serif
+      font-family: 'Funnel Sans', sans-serif;
       min-height: 100vh;
     }
 
@@ -183,5 +185,9 @@ export class PlayersComponent {
       funFact: "Snootles can speak to spirits of the forest."
     }
   ];
+
+  addCharacter(newChar: Character) {
+    this.characters.push(newChar);
+  }
 }
 
