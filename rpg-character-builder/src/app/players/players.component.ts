@@ -86,7 +86,7 @@ import { CharacterListComponent } from '../character-list/character-list.compone
     }
 
     @media (max-width: 768px) {
-      .players-container: {
+      .players-container {
         padding: 20px;
       }
     }
