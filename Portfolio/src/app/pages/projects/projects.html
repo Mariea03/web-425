@@ -1,0 +1,40 @@
+<div class="page-container">
+
+  <header class="page-banner">
+   <h1>Projects</h1>
+
+    <p class="projects-intro">
+      Below are projects I've completed during the Web Development program.
+      Each project helped strengthen my understanding of web development,
+     and modern web practices.
+    </p>
+  </header>
+
+  <section class="projects-section">
+    <div class="projects-grid">
+      <div class="project-card" *ngFor="let project of projects">
+        <h3>{{ project.name }}</h3>
+
+        <p class="description">
+          {{ project.description }}
+        </p>
+
+        <p><strong>Technologies Used:</strong></p>
+        <p>{{ project.tech }}</p>
+
+        <p><strong>What I learned:</strong></p>
+        <p>{{ project.learned }}</p>
+
+        <a
+          class="project-link"
+          [href]="project.link"
+          target="_blank"
+          rel="noopener"
+          >
+          View Project
+        </a>
+      </div>
+
+    </div>
+  </section>
+</div>

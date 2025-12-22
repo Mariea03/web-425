@@ -1,0 +1,29 @@
+.not-found {
+  text-align: center;
+  padding-top: 4rem;
+}
+
+.not-found h1 {
+  font-size: 5rem;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+}
+
+.not-found h2 {
+  margin-bottom: 1rem;
+}
+
+.not-found p {
+  max-width: 500px;
+  margin: 0 auto 2rem;
+}
+
+.home-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.home-link:hover {
+  text-decoration: underline;
+}

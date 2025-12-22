@@ -1,0 +1,67 @@
+
+<header class="page-banner">
+  <h1>Resume</h1>
+  <p class="resume-intro">
+    Below is a summary of my education, skills, and experience.
+    A downloadable PDF version of my resume is also available.
+  </p>
+</header>
+
+<div class="page-container resume">
+  <!--Download-->
+  <a
+  class="resume-download"
+  href="/mariea-nies-web-developer-resume.pdf"
+  download
+  >
+  Download Resume (PDF)
+  </a>
+<div class="resume-content">
+
+<section class="resume-card">
+  <h3>Education</h3>
+
+  <div *ngFor="let edu of education" class="resume-item">
+
+    <strong>{{ edu.school }}</strong>
+    <span class="muted">
+      {{ edu.program }} • {{ edu.year }}
+    </span>
+  </div>
+</section>
+
+  <!--Skills-->
+  <section class="resume-card">
+   <h3>Skills</h3>
+
+  <div class="skills-groups">
+    <div class="skills-group" *ngFor="let group of skills">
+      <h4>{{ group.category }}</h4>
+
+      <ul>
+        <li *ngFor="let skill of group.items">
+
+          {{ skill }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+  <!--Experience-->
+  <section class="resume-card">
+    <h3>Experience</h3>
+
+    <div *ngFor="let job of experience" class="resume-item">
+
+      <strong>{{ job.role }}</strong>
+      <span class="muted">{{ job.org }}</span>
+
+      <p>
+      {{ job.details }}
+      </p>
+    </div>
+  </section>
+
+</div>
+</div>
